@@ -7,7 +7,7 @@
 
 - name: Install Nginx Official Repository
   apt_repository:
-    repo: deb http://nginx.org/packages/ubuntu/ {{ ansible_distribution_release }} nginx
+    repo: 'ppa:nginx/stable'
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install Nginx Official Repository
@@ -18,11 +18,6 @@
 - name: Install Nginx Official Source Repository
   apt_repository:
     repo: deb-src http://nginx.org/packages/ubuntu/ xenial nginx
-
-- name: Add the Nginx Repo apt key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: ABF5BD827BD9BF62
 
 - name: Install Nginx, PHP-FPM and LetsEncrypt Packages
   apt: name={{ item }} state=latest update_cache=yes
