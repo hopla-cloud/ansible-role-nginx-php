@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: nginx_php
-  author: hopla-cloud
+  author: hoplacloud
   description: Hopla.cloud role for ansible to deploy Nginx and PHP (FPM)
   company: hopla.cloud
 
