@@ -1,0 +1,97 @@
+---
+# tasks file for hoplacloud.nginx_php
+
+- name: Install Ondrej PHP PPA Repository
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+
+- name: Install Certbot (letsencrypt) PPA Repository
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
+
+- name: Install Nginx Official Repository
+  apt_repository:
+    repo: deb http://nginx.org/packages/ubuntu/ xenial nginx
+
+- name: Install Nginx Official Source Repository
+  apt_repository:
+    repo: deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+
+- name: Add the Nginx Repo apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: ABF5BD827BD9BF62
+
+- name: Install Nginx, PHP-FPM and LetsEncrypt Packages
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - nginx
+    - php{{ php_version }}-mbstring
+    - php{{ php_version }}-mysql
+    - php{{ php_version }}-xml
+    - php{{ php_version }}-zip
+    - php{{ php_version }}-gd
+    - php{{ php_version }}-curl
+    - php{{ php_version }}-bz2
+    - php{{ php_version }}-fpm
+    - php{{ php_version }}-intl
+    - php{{ php_version }}-json
+    - php-apcu
+
+- name: Create new Nginx site directory index.html
+  file:
+    path: /usr/share/nginx/html/index.html
+    state: absent
+
+- name: Create new (empty) Nginx site directory index.html
+  file:
+    path: /usr/share/nginx/html/index.html
+    state: touch
+    mode: 0755
+
+- name: Enable nginx service and start it
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Copy Configuration file
+  copy:
+    src: files/security.conf
+    dest: /etc/nginx/conf.d/security.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart nginx
+
+- name: Sending the php.ini configuration file (FPM)
+  template:
+    src: php.ini.j2
+    dest: /etc/php/{{ php_version }}/fpm/php.ini
+  notify:
+    - restart php-fpm
+
+- name: Sending the php.ini configuration file (CLI)
+  template:
+    src: php.ini.j2
+    dest: /etc/php/{{ php_version }}/cli/php.ini
+  notify:
+    - restart php-fpm
+
+- name: Download PHP Composer from official site
+  command: curl -o composer_installer.php -sS https://getcomposer.org/installer
+
+- name: Install PHP Composer
+  command: php composer_installer.php --install-dir=/usr/local/bin --filename=composer
+
+- name: Creating websites directory /var/www/sites
+  file:
+    path: /var/www/sites
+    state: directory
+
+- name: Creating home symlink to /var/www/sites
+  file:
+    src: /var/www
+    dest: /home/{{ customerid }}/my_websites
+    state: link
