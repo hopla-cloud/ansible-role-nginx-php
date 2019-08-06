@@ -5,13 +5,15 @@
   apt_repository:
     repo: 'ppa:ondrej/php'
 
-- name: Install Certbot (letsencrypt) PPA Repository
+- name: Install Nginx Official Repository
   apt_repository:
-    repo: 'ppa:certbot/certbot'
+    repo: deb http://nginx.org/packages/ubuntu/ {{ ansible_distribution_release }} nginx
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install Nginx Official Repository
   apt_repository:
-    repo: deb http://nginx.org/packages/ubuntu/ xenial nginx
+    repo: deb http://nginx.org/packages/debian/ {{ ansible_distribution_release }} nginx
+  when: ansible_distribution == 'Debian'
 
 - name: Install Nginx Official Source Repository
   apt_repository:
