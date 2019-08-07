@@ -15,7 +15,7 @@
     repo: deb http://nginx.org/packages/debian/ {{ ansible_distribution_release }} nginx
   when: ansible_distribution == 'Debian'
 
-- name: Install Nginx, PHP-FPM and LetsEncrypt Packages
+- name: Install Nginx and PHP-FPM Packages
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
     - nginx
