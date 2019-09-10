@@ -86,5 +86,5 @@
 - name: Creating home symlink to /var/www/sites
   file:
     src: /var/www
-    dest: /home/{{ customerid }}/my_websites
+    dest: /home/{{ user_name }}/my_websites
     state: link
