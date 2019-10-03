@@ -19,4 +19,12 @@ galaxy_info:
     - php
     - fpm
 
-dependencies: []
+dependencies:
+    - hoplacloud.linux_update
+    - hoplacloud.linux_motd
+    - hoplacloud.linux_motd
+    - hoplacloud.apache_php
+    - hoplacloud.fail2ban
+    - hoplacloud.vhostdeploy_apache
+    - hoplacloud.proftpd
+    - hoplacloud.postfix
