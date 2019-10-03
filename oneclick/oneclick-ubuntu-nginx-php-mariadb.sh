@@ -32,4 +32,4 @@ echo "Deployment date (YYYY-MM-DD):" >> /etc/hopla.cloud-roles
 date +%F >> /etc/hopla.cloud-roles
 
 # Install oneclick app
-ansible-playbook /root/.ansible/roles/hoplacloud.vhostdeploy_nginx/playbooks/nginx_php_mariadb.yml
+ansible-playbook /root/.ansible/roles/hoplacloud.nginx_php/playbooks/nginx_php_mariadb.yml
