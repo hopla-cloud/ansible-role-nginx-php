@@ -22,9 +22,6 @@ galaxy_info:
 dependencies:
     - hoplacloud.linux_update
     - hoplacloud.linux_motd
-    - hoplacloud.linux_motd
-    - hoplacloud.apache_php
     - hoplacloud.fail2ban
-    - hoplacloud.vhostdeploy_apache
     - hoplacloud.proftpd
     - hoplacloud.postfix
