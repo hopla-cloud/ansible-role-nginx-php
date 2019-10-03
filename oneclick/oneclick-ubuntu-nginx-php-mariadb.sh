@@ -26,6 +26,7 @@ ansible-galaxy install hoplacloud.vhostdeploy_nginx
 # Write roles
 echo "- hoplacloud.nginx_php" >> /etc/hopla.cloud-roles
 echo "- hoplacloud.vhostdeploy_nginx" >> /etc/hopla.cloud-roles
+echo "- geerlingguy.mysql" >> /etc/hopla.cloud-roles
 echo " " >> /etc/hopla.cloud-roles
 echo "Deployment date (YYYY-MM-DD):" >> /etc/hopla.cloud-roles
 date +%F >> /etc/hopla.cloud-roles
