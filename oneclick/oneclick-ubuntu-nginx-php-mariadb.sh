@@ -24,7 +24,7 @@ apt update
 DEBIAN_FRONTEND=noninteractive apt install ansible -y --allow-yes true
 
 # Install hoplacloud roles
-ansible-galaxy install hoplacloud.vhostdeploy_nginx
+ansible-galaxy install hoplacloud.nginx_php
 ansible-galaxy install geerlingguy.mysql
 
 # Write roles
