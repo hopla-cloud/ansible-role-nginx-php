@@ -26,4 +26,5 @@ dependencies:
     - hoplacloud.fail2ban
     - hoplacloud.proftpd
     - hoplacloud.postfix
+    - hoplacloud.git
     - hoplacloud.vhostdeploy_nginx
