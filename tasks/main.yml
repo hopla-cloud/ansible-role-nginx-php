@@ -1,6 +1,11 @@
 ---
 # tasks file for hoplacloud.nginx_php
 
+- name: Set fact for server_type (nginx)
+  set_fact:
+    server_type: nginx
+    cacheable: yes
+
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
