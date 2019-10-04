@@ -34,6 +34,8 @@ Dependencies
 - hoplacloud.fail2ban
 - hoplacloud.proftpd
 - hoplacloud.postfix
+- hoplacloud.git
+- hoplacloud.letsencrypt
 - hoplacloud.vhostdeploy_nginx
 
 Example Playbook
