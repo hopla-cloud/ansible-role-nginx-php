@@ -16,6 +16,9 @@
 # Set env vars
 export HOME=/root
 
+# Set current date
+currdate=$(date +%F)
+
 # Install ansible
 apt update
 DEBIAN_FRONTEND=noninteractive apt install ansible -y --allow-yes true
@@ -25,12 +28,8 @@ ansible-galaxy install hoplacloud.vhostdeploy_nginx
 ansible-galaxy install geerlingguy.mysql
 
 # Write roles
-echo "- hoplacloud.nginx_php" >> /etc/hopla.cloud-roles
-echo "- hoplacloud.vhostdeploy_nginx" >> /etc/hopla.cloud-roles
-echo "- geerlingguy.mysql" >> /etc/hopla.cloud-roles
-echo " " >> /etc/hopla.cloud-roles
-echo "Deployment date (YYYY-MM-DD):" >> /etc/hopla.cloud-roles
-date +%F >> /etc/hopla.cloud-roles
+echo "- hoplacloud.nginx_php (${currdate})" >> /etc/hopla.cloud-roles
+echo "- geerlingguy.mysql (${currdate})" >> /etc/hopla.cloud-roles
 
 # Install oneclick app
 ansible-playbook /root/.ansible/roles/hoplacloud.nginx_php/playbooks/nginx_php_mariadb.yml
