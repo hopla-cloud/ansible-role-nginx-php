@@ -7,6 +7,11 @@
       - mariadb-server
       - python-mysqldb
   remote_user: root
+  pre_tasks:
+    - name: Set fact for server_type (nginx)
+      set_fact:
+        server_type: nginx
+        cacheable: yes
   roles:
     - hoplacloud.nginx_php
     - geerlingguy.mysql
