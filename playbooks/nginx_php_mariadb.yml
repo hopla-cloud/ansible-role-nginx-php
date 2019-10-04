@@ -8,5 +8,5 @@
       - python-mysqldb
   remote_user: root
   roles:
-    - hoplacloud.vhostdeploy_nginx
+    - hoplacloud.nginx_php
     - geerlingguy.mysql
