@@ -73,7 +73,8 @@
     - restart php-fpm
 
 - name: Check if Composer is installed.
-  stat: "path={{ composer_path }}"
+  stat:
+    path: /usr/local/bin/composer
   register: composer_bin
 
 - name: Get Composer installer signature.
