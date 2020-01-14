@@ -110,7 +110,7 @@
   when: not composer_bin.stat.exists
 
 - name: Run Composer installer.
-  command: php php /tmp/composer-installer.php --install-dir=/usr/local/bin --filename=composer
+  command: php /tmp/composer-installer.php --install-dir=/usr/local/bin --filename=composer
   when: not composer_bin.stat.exists
 
 - name: Creating websites directory /var/www/sites
