@@ -58,6 +58,23 @@
   notify:
     - restart nginx
 
+- name: Ensure the vhost_deploy directory is present
+  file:
+    path: /usr/src/vhost_deploy_nginx
+    state: directory
+
+- name: Sending vhost_deploy_nginx file
+  template:
+    src: vhost_deploy.sh.j2
+    dest: /usr/src/vhost_deploy_nginx/vhost_deploy.sh
+    mode: '0755'
+
+- name: Creating symlink for vhost_deploy.sh script
+  file:
+    src: /usr/src/vhost_deploy_nginx/vhost_deploy.sh
+    dest: /usr/local/sbin/vhost_deploy
+    state: link
+
 - name: Sending the php.ini configuration file (FPM)
   template:
     src: php.ini.j2
@@ -93,7 +110,7 @@
   when: not composer_bin.stat.exists
 
 - name: Run Composer installer.
-  command: php composer_installer.php --install-dir=/usr/local/bin --filename=composer
+  command: php php /tmp/composer-installer.ph --install-dir=/usr/local/bin --filename=composer
   when: not composer_bin.stat.exists
 
 - name: Creating websites directory /var/www/sites
