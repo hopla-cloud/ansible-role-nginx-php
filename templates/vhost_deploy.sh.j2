@@ -1,5 +1,5 @@
-{% raw %}
 #!/bin/bash
+{% raw %}
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ phpfpmDaemonName="php{{ php_version }}-fpm"
 phpfpmPoolPrefix="/etc/php/{{ php_version }}/fpm/pool.d"
 
 # FTP Configuration
-ftpShellPath="/usr/local/bin/ftponly"
+ftpShellPath="{{ vhost_user_shell }}"
 
 {% raw %}
 # Put the date into a var

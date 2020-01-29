@@ -12,3 +12,7 @@ short_open_tag: "On"
 # Memcached
 session_save_handler: "files"
 session_save_path: "/var/lib/php/sessions"
+
+# Vhost_deploy
+# User shell
+vhost_user_shell: "/usr/local/bin/ftponly"
