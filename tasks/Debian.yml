@@ -1,5 +1,7 @@
 ---
 # tasks file for hoplacloud.nginx_php
+- set_fact:
+      server_type: "nginx"
 
 - name: Install Ondrej PHP PPA Repository
   apt_repository:
