@@ -222,13 +222,14 @@ server {
     # http://domain.tld/index.php/some-path
     # Remove the internal directive to allow URIs like this
 #    internal;
-  }
+#  }
+
  # Other conf
   location ~ [^/]\.php(/|$) {
     fastcgi_pass unix:/var/run/php/${phpfpmDaemonName}-$1_$2.sock;
 
     fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-    if (!-f $document_root$fastcgi_script_name) {
+    if (!-f \$document_root\$fastcgi_script_name) {
       return 404;
     }
     include fastcgi_params;
@@ -236,7 +237,7 @@ server {
     fastcgi_index index.php;
     fastcgi_param HTTP_PROXY "";
     include fastcgi_params;
-    fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+    fastcgi_param SCRIPT_FILENAME \$document_root/\$fastcgi_script_name;
   }
 
 
