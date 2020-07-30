@@ -8,7 +8,7 @@
 - name: Install Nginx PPA Repository
   apt_repository:
     repo: 'ppa:nginx/stable'
-  when: ansible_distribution == 'Ubuntu'
+  when: "'bionic' in ansible_distribution_release"
 
 - name: Install Nginx Official Repository
   apt_repository:
